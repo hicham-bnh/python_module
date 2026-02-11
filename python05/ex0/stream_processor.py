@@ -11,7 +11,7 @@ class DataProcessor(ABC):
         pass
 
     def format_output(self, result: str) -> str:
-        return f" output: {result}"
+        return f" Output: {result}"
 
 class NumericProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
@@ -28,23 +28,45 @@ class NumericProcessor(DataProcessor):
         return f"Processed {count} numeric values, sum={total}, avg={avg}"
     
     def format_output(self, result: str):
-        return f"output: {result}"
+        return f"Output: {result}"
         
 
 class TextProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
-        return isinstance(data, list) and all(isinstance(x, (str)) for x in data)
+        return isinstance(data, str)
     
     def process(self, data: Any):
-        count = len(data)
+        count = sum(len(x) for x in data)
         total = len(data.split(" "))
         return f" Processed text: {count} characters, {total} words"
     
     def format_output(self, result: str):
-        return f"output: {result}"
+        return f"Output: {result}"
 
 class LogProcessor(DataProcessor):
     pass
 
 if __name__ == "__main__":
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
+
+    num_processor = NumericProcessor()
+    text_processor = TextProcessor()
+
+    numeric_data = [1, 2, 3.5, 4]
+    text_data = "Hello Nexus World"
+
+    # Test NumericProcessor
+    if num_processor.validate(numeric_data):
+        result = num_processor.process(numeric_data)
+        print(num_processor.format_output(result))
+    else:
+        print("Invalid numeric data")
+
+    print()
+
+    # Test TextProcessor
+    if text_processor.validate(text_data):
+        result = text_processor.process(text_data)
+        print(text_processor.format_output(result))
+    else:
+        print("Invalid text data")
