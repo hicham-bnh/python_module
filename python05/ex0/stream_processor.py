@@ -52,21 +52,26 @@ if __name__ == "__main__":
     num_processor = NumericProcessor()
     text_processor = TextProcessor()
 
-    numeric_data = [1, 2, 3.5, 4]
+    numeric_data: List = [1, 2, 3, 5, 4]
     text_data = "Hello Nexus World"
 
-    # Test NumericProcessor
-    if num_processor.validate(numeric_data):
-        result = num_processor.process(numeric_data)
-        print(num_processor.format_output(result))
-    else:
-        print("Invalid numeric data")
-
-    print()
-
-    # Test TextProcessor
-    if text_processor.validate(text_data):
-        result = text_processor.process(text_data)
-        print(text_processor.format_output(result))
-    else:
-        print("Invalid text data")
+    print("Initializing Numeric Processor...")
+    print(f"Processing data: {numeric_data}")
+    try:
+        if (num_processor.validate(numeric_data)):
+            print("Validation: Numeric data verified")
+        else:
+            print("Validation: Numeric data not verified")
+        print(f"{num_processor.format_output(num_processor.process(numeric_data))}")
+    except Exception as e:
+        print(e)
+    print("\nInitializing Text Processor...")
+    print(f"Processing data: \"{text_data}\"")
+    try:
+        if (text_processor.validate(text_data)):
+            print("Validation: Text data verified")
+        else:
+            print("Validation: Text data not verified")
+        print(f"{text_processor.format_output(text_processor.process(text_data))}")
+    except Exception as e:
+        print(e)
