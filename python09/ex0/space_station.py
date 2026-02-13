@@ -2,6 +2,7 @@ from pydantic import BaseModel, ValidationError, field_validator
 from typing import Optional
 from datetime import datetime
 
+
 class SpaceStation(BaseModel):
     station_id: str
     name: str
@@ -18,49 +19,53 @@ class SpaceStation(BaseModel):
         if len(station_id) < 3 or len(station_id) > 10:
             raise ValueError("ID should be less than 10 or more than 3")
         return station_id
-    
+
     @field_validator("name")
     @classmethod
     def check_name(cls, name: str) -> str:
         if len(name) < 1 or len(name) > 50:
             raise ValueError("name should be more than 1 or less thane 50")
         return name
-    
+
     @field_validator("crew_size")
     @classmethod
     def crew_size_is_valid(cls, crew_size: int) -> int:
         if crew_size < 1 or crew_size > 20:
             raise ValueError("crew_size must be between 1 and 20")
         return crew_size
-    
+
     @field_validator("power_level")
     @classmethod
     def check_power(cls, power_level: float) -> float:
         if power_level < 0.0 or power_level > 100.0:
-            raise ValueError("power_level should be less than 100.0 or more than 0.0")
+            raise ValueError(
+                "power_level should be less than 100.0 or more than 0.0"
+            )
         return power_level
-    
+
     @field_validator("oxygen_level")
     @classmethod
     def check_oxygen(cls, oxygen_level: float) -> float:
         if oxygen_level < 0.0 or oxygen_level > 100.0:
-            raise ValueError("oxygen_level should be less than 100.0 or more than 0.0")
+            raise ValueError(
+                "oxygen_level should be less than 100.0 or more than 0.0"
+            )
         return oxygen_level
-    
+
     @field_validator("is_operational")
     @classmethod
     def check_operational(cls, is_operational: bool) -> bool:
         if not isinstance(is_operational, bool):
             raise ValueError("is_operational should be true or false")
         return is_operational
-    
+
     @field_validator("notes")
     @classmethod
     def check_notes(cls, notes: Optional[str]) -> Optional[str]:
         if notes is not None and len(notes) > 200:
             raise ValueError("notes should have max 200 characters")
         return notes
-    
+
 
 def main():
     print("Space Station Data Validation")
@@ -88,7 +93,7 @@ def main():
         else:
             print("Not Operational")
     except ValidationError as e:
-        print(f"Expected validation error: ")
+        print("Expected validation error: ")
         print(e)
     print()
     print("========================================")
@@ -117,8 +122,9 @@ def main():
         else:
             print("Not Operational")
     except ValidationError as e:
-        print(f"Expected validation error:")
+        print("Expected validation error:")
         print(e)
+
 
 if __name__ == "__main__":
     main()
