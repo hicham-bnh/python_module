@@ -1,8 +1,9 @@
 from pydantic import ValidationError, model_validator, BaseModel, field_validator
 from datetime import datetime
 from typing import Optional
+from enum import Enum
 
-class ContactType(BaseModel):
+class ContactType(Enum):
     radio = "radio"
     visual = "visual"
     physical = "physical"
@@ -33,6 +34,13 @@ class AlienContact(BaseModel):
             raise ValueError("location must be less than 100 or more than 3")
         return location
     
+    @field_validator('contact_type')
+    @classmethod
+    def check_contact_type(cls, contact_type: ContactType) -> ContactType:
+        if contact_type is not ContactType:
+            raise ValueError("contact_type invalid")
+        return contact_type
+
     @field_validator('signal_strenght')
     @classmethod
     def check_signal(cls, signal_strenght: float) -> float:
@@ -67,3 +75,10 @@ class AlienContact(BaseModel):
         if not isinstance(is_verified, bool):
             raise ValueError("is_verified must be true or false")
         return (is_verified)
+
+    @model_validator(mode='after')
+    @classmethod
+    def check_rules(cls, model):
+        id = model.data.get('contact_id')
+        if not id.startswith("AC"):
+            raise ValueError("contac id must begin with AC")
