@@ -40,23 +40,23 @@ class TextProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
         return isinstance(data, str)
 
-    def process(self, data: Any):
+    def process(self, data: Any) -> str:
         count = sum(len(x) for x in data)
         total = len(data.split(" "))
         return f"Processed text: {count} characters, {total} words"
 
-    def format_output(self, result: str):
+    def format_output(self, result: str) -> str:
         return f"Output: {result}"
 
 
 class LogProcessor(DataProcessor):
-    def validate(self, data):
+    def validate(self, data: Any) -> bool:
         return isinstance(data, str)
 
-    def process(self, data):
+    def process(self, data: Any) -> str:
         return f"Processing data: \"{data}\""
 
-    def format_output(self, result):
+    def format_output(self, result: str) -> str:
         word = result.split(":")
         if word[0] == "ERROR":
             return f"Output: [ALERT] {word[0]} level detected:{word[1]}"
