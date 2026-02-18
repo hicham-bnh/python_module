@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict
+from typing import Dict, Any
 
 class Card(ABC):
     def __init__(self, name: str, cost: int, rarity: str) -> None:
@@ -7,11 +7,16 @@ class Card(ABC):
         self.cost: int = cost
         self.rarity: str = rarity
 
-    def play(self, gane_state: Dict) -> Dict:
+    @abstractmethod
+    def play(self, game_state: Dict) -> Dict[Any, str]:
         pass
 
     def get_card_info(self) -> Dict:
-        pass
+        return {
+            "name": self.name,
+            "cost": self.cost,
+            "rarity": self.rarity
+        }
 
     def is_playable(self, available_mana: int) -> bool:
-        pass
+        return self.cost <= available_mana
