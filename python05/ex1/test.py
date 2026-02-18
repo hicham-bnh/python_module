@@ -65,11 +65,33 @@ class TransactionStream(DataStream):
         except Exception as e:
             return f"{e}"
 
+
+class EventStream(DataStream):
+    def __init__(self, stream_id: str, stream_type: str):
+        super().__init__(stream_id, "System Events")
+
+    def filter_data(self, data_batch: List[Any]) -> List[Any]:
+        return [x for x in data_batch if isinstance(x, str)]
+        
+    def process_batch(self, data_batch: List[Any]) -> str:
+        result = self.filter_data(data_batch)
+        error = 0
+        try:
+            for item in result:
+                if isinstance(item, str) and item == "error":
+                    error += 1
+            self.processed_count += len(result)
+            return f"{len(result)} evetns, {error} error detected"
+        except Exception as e:
+            return f"e"
+
 if __name__ == "__main__":
     process_sensor = SensorStream(" SENSOR_001","")
     process_transaction = TransactionStream("TRANS_001","")
+    process_event = EventStream("EVENT_001", "")
     data_sensor: List[Any] = ["temp:22.5", "humidity:65", "pressure:1013"]
     data_transaction = ["buy:100", "sell:150", "buy:75"]
+    data_event = ["login", "error", "login"]
     print("= CODE NEXUS - POLYMORPHIC STREAM SYSTEM ===")
     print("\nInitializing Sensor Stream...")
     print(f"Stream ID: {process_sensor.stream_id}, Type: {process_sensor.stream_type}")
@@ -79,3 +101,12 @@ if __name__ == "__main__":
     print(f"Stream ID: {process_transaction.stream_id}, Type: {process_transaction.stream_type}")
     print("Processing sensor batch: [buy:100, sell:150, buy:75]")
     print("Sensor analysis:",process_transaction.process_batch(data_transaction))
+    print("\nInitializing Event Stream...")
+    print(f"Stream ID: {process_event.stream_id}, Type: {process_event.stream_type}")
+    print("Processing sensor batch: [login, error, login]")
+    print("Sensor analysis:",process_event.process_batch(data_event))
+    print("\n=== Polymorphic Stream Processing ===")
+    print("Processing mixed stream types through unified interface...\n")
+    print("Batch 1 Results:")
+
+
