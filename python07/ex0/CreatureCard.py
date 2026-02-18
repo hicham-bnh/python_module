@@ -24,8 +24,23 @@ class CreatureCard(Card):
     def play(self, game_state: Dict) -> Dict:
         return {
             "card_player": self.name,
-            "mana_used": 
+            "mana_used": self.cost,
+            "effect": "Creature summoned to battlefield"
         }
 
-    def attack_target(self, target) -> Dict:
-        pass
+    def attack_target(self, target: str) -> Dict:
+        return {
+            "attacker": self.name,
+            "target": target,
+            "damage_result": self.attack,
+            "combat_resolved": True
+        }
+
+    def get_card_info(self):
+        base_info = super().get_card_info()
+        base_info.update({
+                "type": "Creature",
+                "attack": self.attack,
+                "health": self.health
+            })
+        return base_info
