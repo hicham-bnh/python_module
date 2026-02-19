@@ -1,4 +1,4 @@
-from CreatureCard import CreatureCard
+from ex0.CreatureCard import CreatureCard
 
 if __name__ == "__main__":
 
