@@ -1,17 +1,55 @@
 from ex0.Card import Card
-from typing import Dict
+from ex0.CreatureCard import CreatureCard
+from typing import Dict, List
+from ex1.SpellCard import SpellCard
+from ex1.ArtifactCard import ArtifactCard
 
 class Deck():
+    def __init__(self) -> None:
+        self.decks: List[Card] = []
+
     def add_card(self, card: Card) -> None:
-        pass
+        self.decks.append(card)
 
     def remove_card(self, card_name: Card) -> bool:
-        pass
+        for card in self.decks:
+            if card == card_name:
+                self.decks.remove(card_name)
+                return True
+        return False
+
 
     def shuffle(self) -> None:
         pass
+
     def draw_card(self) -> Card:
         pass
 
     def get_deck_stats(self) -> Dict:
-        pass
+        total_card: int = len(self.decks)
+        creature: int = 0
+        spells: int = 0
+        artifacts: int = 0
+        cost: int = 0
+        avg_cost: float = 0.0
+        for card in self.decks:
+            if isinstance(card, CreatureCard):
+                cost += card.cost
+                creature += 1
+            if isinstance(card, SpellCard):
+                cost += card.cost
+                spells += 1
+            if isinstance(card, ArtifactCard):
+                cost += card.cost
+                artifacts += 1
+        avg_cost = cost / total_card
+        return {
+        'total_cards': total_card,
+        'creatures': creature,
+        'spells': spells,
+        'artifacts': artifacts,
+        'avg_cost': avg_cost
+        }
+
+        
+            

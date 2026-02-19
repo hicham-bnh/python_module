@@ -10,5 +10,5 @@ class SpellCard(Card):
     def play(self, game_state: Dict) -> Dict:
         pass
 
-    def resolve(self, targets: List) -> Dict:
+    def resolve_effect(self, targets: List) -> Dict:
         pass
