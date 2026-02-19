@@ -7,8 +7,14 @@ class SpellCard(Card):
         super().__init__(name, cost, rarity)
         self.effect_type: str = effect_type
 
-    def play(self, game_state: Dict) -> Dict:
-        pass
+    def play(self) -> Dict:
+        return {
+            "card_player": self.name,
+            "mana_used": 3,
+            "effect": self.effect_type
+        }
 
     def resolve_effect(self, targets: List) -> Dict:
-        pass
+        return {
+            ""
+        }

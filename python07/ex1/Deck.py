@@ -3,6 +3,7 @@ from ex0.CreatureCard import CreatureCard
 from typing import Dict, List
 from ex1.SpellCard import SpellCard
 from ex1.ArtifactCard import ArtifactCard
+import random
 
 class Deck():
     def __init__(self) -> None:
@@ -20,10 +21,12 @@ class Deck():
 
 
     def shuffle(self) -> None:
-        pass
+        random.shuffle(self.decks)
 
     def draw_card(self) -> Card:
-        pass
+        print(f"Drew: {self.decks[0].name} ({self.decks[0].rarity})")
+        self.remove_card(self.decks[0])
+        return self.decks[0]
 
     def get_deck_stats(self) -> Dict:
         total_card: int = len(self.decks)
