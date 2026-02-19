@@ -14,7 +14,7 @@ class Deck():
 
     def remove_card(self, card_name: Card) -> bool:
         for card in self.decks:
-            if card == card_name:
+            if card.name == card_name:
                 self.decks.remove(card_name)
                 return True
         return False
