@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any
 
+
 class Card(ABC):
     def __init__(self, name: str, cost: int, rarity: str) -> None:
         self.name: str = name

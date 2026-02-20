@@ -33,7 +33,11 @@ if __name__ == "__main__":
     print("Building deck with different card types...")
     print(deck.get_deck_stats())
     print("\nDrawing and playing cards:\n")
-    deck.draw_card()
-    print("Play result:", card_spel.play())
-    print()
-    deck.draw_card()
+    try:
+        for _ in range(3):
+            card = deck.draw_card()
+            print(f"Drew: {card.name} ({card.__class__.__name__})")
+            print(f"Play result: {card.play({})}\n")
+    except Exception as e:
+        print(e)
+    print("Polymorphism in action: Same interface, different card behaviors!")

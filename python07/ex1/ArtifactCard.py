@@ -10,13 +10,22 @@ class ArtifactCard(Card):
             rarity: str,
             durability: int,
             effect: str
-        ) -> None:
+    ) -> None:
         super().__init__(name, cost, rarity)
         self.durability: int = durability
         self.effect: str = effect
 
     def play(self, game_state: Dict) -> Dict:
-        pass
+        return {
+            "Card_played": self.name,
+            "mana_used": self.cost,
+            "effect": self.effect
+        }
 
     def activate_ability(self) -> Dict:
-        pass
+        effect = self.effect.split(":")
+        return {
+            "card_actived": self.name,
+            "effect": effect[1],
+            "duration": effect[0]
+        }

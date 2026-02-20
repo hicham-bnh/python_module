@@ -5,6 +5,7 @@ from ex1.SpellCard import SpellCard
 from ex1.ArtifactCard import ArtifactCard
 import random
 
+
 class Deck():
     def __init__(self) -> None:
         self.decks: List[Card] = []
@@ -19,14 +20,13 @@ class Deck():
                 return True
         return False
 
-
     def shuffle(self) -> None:
         random.shuffle(self.decks)
 
     def draw_card(self) -> Card:
-        print(f"Drew: {self.decks[0].name} ({self.decks[0].rarity})")
-        self.remove_card(self.decks[0])
-        return self.decks[0]
+        if not self.decks:
+            raise IndexError("no card in the deck")
+        return self.decks.pop(0)
 
     def get_deck_stats(self) -> Dict:
         total_card: int = len(self.decks)
@@ -47,12 +47,9 @@ class Deck():
                 artifacts += 1
         avg_cost = cost / total_card
         return {
-        'total_cards': total_card,
-        'creatures': creature,
-        'spells': spells,
-        'artifacts': artifacts,
-        'avg_cost': avg_cost
+            'total_cards': total_card,
+            'creatures': creature,
+            'spells': spells,
+            'artifacts': artifacts,
+            'avg_cost': avg_cost
         }
-
-        
-            
