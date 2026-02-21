@@ -43,8 +43,8 @@ class SensorStream(DataStream):
         super().__init__(stream_id, "Environmental Data", "Sensor", "readings")
 
     def process_batch(self, data_batch: List[Any]) -> str:
-        self.critique: int = 0
-        result: = self.filter_data(data_batch, "temp")
+        self.critique = 0
+        result: List[Any] = self.filter_data(data_batch, "temp")
         result.extend(self.filter_data(data_batch, "humidity"))
         result.extend(self.filter_data(data_batch, "pressure"))
         if result == []:
@@ -83,7 +83,7 @@ class TransactionStream(DataStream):
         self.critique = 0
         total: int = 0
         op: int = 0
-        trans_data = self.filter_data(data_batch, "sell")
+        trans_data: List[Any]= self.filter_data(data_batch, "sell")
         trans_data.extend(self.filter_data(data_batch, "buy"))
         if trans_data == []:
             return "No data for transaction proceese"
@@ -111,7 +111,7 @@ class EventStream(DataStream):
 
     def process_batch(self, data_batch: List[Any]) -> str:
         self.critique = 0
-        result = self.filter_data(data_batch, "login")
+        result: List[Any] = self.filter_data(data_batch, "login")
         result.extend(self.filter_data(data_batch, "error"))
         result.extend(self.filter_data(data_batch, "logout"))
         if result == []:
@@ -165,7 +165,7 @@ class StreamProcessor():
 
         elif filtre == "High-priority data only":
             try:
-                alerts = []
+                alerts: List= []
                 for process in processdata:
                     process.process_batch(data)
                     if isinstance(process, SensorStream) and process.critique:
@@ -185,7 +185,7 @@ class StreamProcessor():
 
 
 if __name__ == "__main__":
-    data_test = [
+    data_test: List[Any] = [
         "temp:40",
         "temp:40",
         "buy:500",
@@ -196,24 +196,24 @@ if __name__ == "__main__":
         "logout",
         "login"
     ]
-    strams = [
+    strams: List[DataStream] = [
         SensorStream("SENSOR_002"),
         TransactionStream("TRANS_002"),
         EventStream("EVENT_002")
     ]
-    stream = StreamProcessor()
-    s_stream = SensorStream("SENSOR_001")
-    t_stream = TransactionStream("TRANS_001 ")
-    e_stream = EventStream("EVENT_001")
-    s_data = [
+    stream: StreamProcessor = StreamProcessor()
+    s_stream: SensorStream = SensorStream("SENSOR_001")
+    t_stream: TransactionStream = TransactionStream("TRANS_001 ")
+    e_stream: EventStream = EventStream("EVENT_001")
+    s_data: List[Any] = [
         "temp:22.5",
         "humidity:65",
         "pressure:1013"]
-    t_data = [
+    t_data: List[Any] = [
         "buy:100",
         "sell:150",
         "buy:75",]
-    e_data = [
+    e_data: List[Any] = [
         "login",
         "error",
         "logout"
