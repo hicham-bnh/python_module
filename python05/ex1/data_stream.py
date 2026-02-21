@@ -83,7 +83,7 @@ class TransactionStream(DataStream):
         self.critique = 0
         total: int = 0
         op: int = 0
-        trans_data: List[Any]= self.filter_data(data_batch, "sell")
+        trans_data: List[Any] = self.filter_data(data_batch, "sell")
         trans_data.extend(self.filter_data(data_batch, "buy"))
         if trans_data == []:
             return "No data for transaction proceese"
@@ -165,7 +165,7 @@ class StreamProcessor():
 
         elif filtre == "High-priority data only":
             try:
-                alerts: List= []
+                alerts: List = []
                 for process in processdata:
                     process.process_batch(data)
                     if isinstance(process, SensorStream) and process.critique:

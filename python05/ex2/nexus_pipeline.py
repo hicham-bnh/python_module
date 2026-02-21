@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from typing import List, Dict, Protocol, Any, Union
-from collections import deque
 
 
 class ProcessingStage(Protocol):
@@ -15,7 +14,6 @@ class ProcessingPipeline(ABC):
         self.add_stage(InputStage())
         self.add_stage(TransformStage())
         self.add_stage(OutputStage())
-
 
     @abstractmethod
     def process(self, data: Any) -> Any:
@@ -34,7 +32,7 @@ class InputStage:
 
 
 class TransformStage:
-    def process(self ,data: Any) -> Any:
+    def process(self, data: Any) -> Any:
         if isinstance(data, Dict):
             print("Transform: Enriched with metadata and validation")
             return data
@@ -56,12 +54,16 @@ class OutputStage:
     def process(self, data: Any) -> Any:
         if isinstance(data, dict):
             if data.get('value'):
-                res = f"Processed temperature reading: {data.get('value')}°{data.get('unit')} (Normal range)"
+                res = (
+                    f"Processed temperature reading: "
+                    f"{data.get('value')}°{data.get('unit')} (Normal range)"
+                    )
             elif 'user' in str(data):
                 res = "Stream summary: 5 readings, avg: 22.1°C"
             else:
                 res = "User activity logged: 1 actions processed"
         return f"Output: {res}"
+
 
 class JSONAdapter(ProcessingPipeline):
     def __init__(self, pipeline_id: str) -> None:
@@ -72,7 +74,8 @@ class JSONAdapter(ProcessingPipeline):
         for stage in self.stages:
             data = stage.process(data)
         return data
-    
+
+
 class CSVAdapter(ProcessingPipeline):
     def __init__(self, pipeline_id: str) -> None:
         super().__init__(pipeline_id)
@@ -82,7 +85,8 @@ class CSVAdapter(ProcessingPipeline):
         for stage in self.stages:
             data = stage.process(data)
         return data
-    
+
+
 class StreamAdapter(ProcessingPipeline):
     def __init__(self, pipeline_id: str) -> None:
         super().__init__(pipeline_id)
@@ -92,7 +96,8 @@ class StreamAdapter(ProcessingPipeline):
         for stage in self.stages:
             data = stage.process(data)
         return data
-    
+
+
 class NexusManager:
     def __init__(self) -> None:
         self.pipelines: List[ProcessingPipeline] = []
@@ -107,7 +112,7 @@ class NexusManager:
             if pipeline_id == pipeline.pipeline_id:
                 return pipeline.process(data)
         raise ValueError(f"No pipeline found with id {pipeline_id}")
-        
+
 
 if __name__ == "__main__":
     print("=== CODE NEXUS - ENTERPRISE PIPELINE SYSTEM ===\n")

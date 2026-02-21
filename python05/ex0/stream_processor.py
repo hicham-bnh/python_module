@@ -38,7 +38,6 @@ class NumericProcessor(DataProcessor):
         return True
 
 
-
 class TextProcessor(DataProcessor):
     def __init__(self) -> None:
         pass
@@ -106,7 +105,7 @@ def launch(process: DataProcessor, data: Any):
             print(f"Validation: {get_type(process)} data verified")
         else:
             print(f"Validation: {get_type(process)} data not verified")
-        print(process.fromat_output(process.process(data)))
+        print(process.format_output(process.process(data)))
     except Exception as e:
         print(f"ERROR : {e}")
 
