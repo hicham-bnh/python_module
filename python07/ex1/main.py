@@ -2,6 +2,18 @@ from ex1.ArtifactCard import ArtifactCard
 from ex1.SpellCard import SpellCard
 from ex0.CreatureCard import CreatureCard
 from ex1.Deck import Deck
+from ex0.Card import Card
+
+
+def get_type(card: Card) -> str:
+    if isinstance(card, SpellCard):
+        return "SpellCard"
+    elif isinstance(card, CreatureCard):
+        return "CreatureCard"
+    elif isinstance(card, ArtifactCard):
+        return "ArtifactCard"
+    return f"{card}"
+
 
 if __name__ == "__main__":
     deck = Deck()
@@ -36,7 +48,7 @@ if __name__ == "__main__":
     try:
         for _ in range(3):
             card = deck.draw_card()
-            print(f"Drew: {card.name} ({card.__class__.__name__})")
+            print(f"Drew: {card.name} ({get_type(card)})")
             print(f"Play result: {card.play({})}\n")
     except Exception as e:
         print(e)
