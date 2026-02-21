@@ -14,11 +14,11 @@ class DataProcessor(ABC):
     def validate(self, data: Any) -> bool:
         pass
 
-    def fromat_output(self, result: str) -> str:
+    def format_output(self, result: str) -> str:
         return f"Output: {result}"
 
 
-class NumeriqueProcssor(DataProcessor):
+class NumericProcessor(DataProcessor):
     def __init__(self) -> None:
         pass
 
@@ -36,6 +36,7 @@ class NumeriqueProcssor(DataProcessor):
             if not isinstance(i, (int, float)):
                 return False
         return True
+
 
 
 class TextProcessor(DataProcessor):
@@ -93,7 +94,7 @@ def get_type(Process: DataProcessor):
         return "Text"
     elif isinstance(Process, LogProcessor):
         return "Log"
-    elif isinstance(Process, NumeriqueProcssor):
+    elif isinstance(Process, NumericProcessor):
         return "Numeric"
 
 
@@ -126,7 +127,7 @@ if __name__ == "__main__":
     data_num: List[int] = [1, 2, 3, 4, 5]
     data_text: str = "Hello Nexus World"
     data_log: str = "ERROR: Connection timeout"
-    num_process: NumeriqueProcssor = NumeriqueProcssor()
+    num_process: NumericProcessor = NumericProcessor()
     text_prcoess: TextProcessor = TextProcessor()
     log_process: LogProcessor = LogProcessor()
     pro_poly: List[DataProcessor] = [num_process, text_prcoess, log_process]
