@@ -9,3 +9,4 @@ if __name__ == "__main__":
     print("- Magical: ['cast_spell', 'channel_mana', 'get_magic_stats']")
     print()
     print("Playing Arcane Warrior (Elite Card)\n")
+    print("Combat phase:")

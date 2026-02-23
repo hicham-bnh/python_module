@@ -9,7 +9,7 @@ class Magical(ABC):
 
     def channel_mana(self, amout: int) -> Dict:
         return {
-
+            
         }
 
     def get_magic_stats(self) -> Dict:
