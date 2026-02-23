@@ -68,7 +68,7 @@ class LogProcessor(DataProcessor):
         pass
 
     def validate(self, data: Any) -> bool:
-        if "ERROR" in data or "INFO" not in data:
+        if "ERROR" not in data or "INFO" not in data:
             return False
         for c in data:
             if not isinstance(c, str):
