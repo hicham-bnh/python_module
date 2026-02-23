@@ -4,8 +4,7 @@ from ex0.CreatureCard import CreatureCard
 if __name__ == "__main__":
     creature_card = CreatureCard("Fire Dragon", 5, "Legendary", 7, 5)
     gane_state = {
-        "mana": 5,
-        "effect": "Creature summoned to battlefield"
+        "effect_creature": "Creature summoned to battlefield"
     }
     print("\n=== DataDeck Card Foundation ===\n")
     print("Testing Abstract Base Class Design:\n")
