@@ -29,3 +29,13 @@ class CreatureCard(Card):
             "damage_dealt": self.attack,
             "combat_resolved": True
         }
+
+    def get_card_info(self) -> Dict:
+        return {
+            "name": self.name,
+            "cost": self.cost,
+            "rarity": self.rarity,
+            "type": self.__class__.__name__,
+            "attack": self.attack,
+            "health": self.health
+        }
