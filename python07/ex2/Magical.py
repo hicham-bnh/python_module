@@ -4,15 +4,13 @@ from typing import Dict, List
 
 class Magical(ABC):
     @abstractmethod
-    def cast_spell(self, spll_name: str, target: List) -> Dict:
+    def cast_spell(self, spell_name: str, targets: List) -> Dict:
         pass
 
-    def channel_mana(self, amout: int) -> Dict:
-        return {
-            
-        }
+    @abstractmethod
+    def channel_mana(self, amount: int) -> Dict:
+        pass
 
+    @abstractmethod
     def get_magic_stats(self) -> Dict:
-        return {
-            
-        }
+        pass
