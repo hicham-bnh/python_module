@@ -18,7 +18,7 @@ class CreatureCard(Card):
     def play(self, game_state: Dict) -> Dict:
         return {
             "card_played": self.name,
-            "maba_used": self.cost,
+            "mana_used": self.cost,
             "effect": game_state.get('effect_creature')
         }
 
