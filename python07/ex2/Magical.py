@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List
+from typing import Dict, List, Any
 
 
 class Magical(ABC):
     @abstractmethod
-    def cast_spell(self, spell_name: str, targets: List) -> Dict:
+    def cast_spell(self, spell_name: str, targets: List[Any]) -> Dict:
         pass
 
     @abstractmethod

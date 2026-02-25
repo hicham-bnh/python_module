@@ -4,12 +4,13 @@ from ex2.EliteCard import EliteCard
 if __name__ == "__main__":
     card: EliteCard = EliteCard(
         "Arcane Warrior",
-        8,
+        3,
         "Epique",
         "melee",
         5,
         3,
-        10
+        10,
+        8
         )
     print("\n=== DataDeck Ability System ===\n")
     print("EliteCard capabilities:")

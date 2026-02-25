@@ -13,7 +13,8 @@ class EliteCard(Card, Combatable, Magical):
             combat_type: str,
             damage: int,
             damage_bloque: int,
-            health: int
+            health: int,
+            mana: int
     ) -> None:
         super().__init__(name, cost, rarity)
         self.combat_type = combat_type
@@ -24,23 +25,24 @@ class EliteCard(Card, Combatable, Magical):
         self.bloque_total: int = 0
         self.total_spell: int = 0
         self.total_mana_channel: int = 0
+        self.mana = mana
 
     def cast_spell(self, spell_name: str, targets: List) -> Dict:
-        self.cost -= 4
+        self.mana -= 4
         self.total_spell += 1
         return {
             "caster": self.name,
             "spell": spell_name,
             "targets": targets,
-            "mana_used": self.cost
+            "mana_used": 4
         }
 
     def channel_mana(self, amount: int) -> Dict:
-        self.cost += amount
+        self.mana += amount
         self.total_mana_channel += amount
         return {
             "channeled": amount,
-            "total_mana": self.cost
+            "total_mana": self.mana
         }
 
     def get_magic_stats(self) -> Dict:
