@@ -11,7 +11,7 @@ class SpellCard(Card):
             effect_type: str
     ) -> None:
         super().__init__(name, cost, rarity)
-        self.effect_type = effect_type
+        self.effect_type: str = effect_type
 
     def play(self, game_state: Dict) -> Dict:
         if self.effect_type == "damage":

@@ -4,9 +4,9 @@ from typing import Dict
 
 class Card(ABC):
     def __init__(self, name: str, cost: int, rarity: str) -> None:
-        self.name = name
-        self.cost = cost
-        self.rarity = rarity
+        self.name: str = name
+        self.cost: int = cost
+        self.rarity: str = rarity
 
     @abstractmethod
     def play(self, game_state: Dict) -> Dict:

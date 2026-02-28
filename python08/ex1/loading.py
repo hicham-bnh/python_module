@@ -33,4 +33,21 @@ if __name__ == "__main__":
     except Exception:
         print("No data points plaese put data...")
         sys.exit(1)
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
 
+    print("Analyzing Matrix data...")
+    print("Processing 1000 data points...")
+    print("Generating visualization...")
+
+    data = np.random.randn(1000)
+    df = pd.DataFrame({"signal": data})
+
+    plt.figure()
+    plt.plot(df["signal"])
+    plt.tight_layout()
+    plt.savefig("matrix_analysis.png")
+
+    print("Analysis complete!")
+    print("Results saved to: matrix_analysis.png")

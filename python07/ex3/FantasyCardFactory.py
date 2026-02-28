@@ -1,7 +1,7 @@
 from .CardFactory import CardFactory
 
-class FantasyCardFactory(CardFactory):
 
+class FantasyCardFactory(CardFactory):
     def create_creature(self, name_or_power=None):
         return {"name": "Fire Dragon", "cost": 5, "damage": 5}
 

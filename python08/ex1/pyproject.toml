@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "42"
+version = "1.0"
+description = ""
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+pandas = "*"
+requests = "*"
+matplotlib = "*"
+numpy = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

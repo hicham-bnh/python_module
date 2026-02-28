@@ -25,7 +25,7 @@ class EliteCard(Card, Combatable, Magical):
         self.bloque_total: int = 0
         self.total_spell: int = 0
         self.total_mana_channel: int = 0
-        self.mana = mana
+        self.mana: int = mana
 
     def cast_spell(self, spell_name: str, targets: List) -> Dict:
         self.mana -= 4

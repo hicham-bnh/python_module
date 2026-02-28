@@ -12,8 +12,8 @@ class CreatureCard(Card):
             health: int
     ) -> None:
         super().__init__(name, cost, rarity)
-        self.attack = attack
-        self.health = health
+        self.attack: int = attack
+        self.health: int = health
 
     def play(self, game_state: Dict) -> Dict:
         return {

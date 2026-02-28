@@ -3,6 +3,7 @@ from ex0.CreatureCard import CreatureCard
 from ex1.SpellCard import SpellCard
 from ex1.Deck import Deck
 from ex1.ArtifactCard import ArtifactCard
+from typing import Dict
 
 
 def get_type(card: Card) -> str:
@@ -17,20 +18,20 @@ def get_type(card: Card) -> str:
 
 if __name__ == "__main__":
     deck = Deck()
-    creature_card = CreatureCard(
+    creature_card: CreatureCard = CreatureCard(
         "Fire Dragon",
         5,
         "Legendary",
         7,
         5
     )
-    spell_card = SpellCard(
+    spell_card: SpellCard = SpellCard(
         "Lightning Bolt",
         3,
         "Common",
         "damage"
     )
-    artifact_card = ArtifactCard(
+    artifact_card: ArtifactCard = ArtifactCard(
         "Mana Crystal",
         2,
         "Common",
@@ -41,7 +42,7 @@ if __name__ == "__main__":
     deck.add_card(spell_card)
     deck.add_card(artifact_card)
     deck.shuffle()
-    game_state = {
+    game_state: Dict = {
         "effect_creature": ""
     }
     print("\n=== DataDeck Deck Builder ===\n")

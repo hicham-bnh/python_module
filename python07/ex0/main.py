@@ -1,9 +1,10 @@
 from ex0.CreatureCard import CreatureCard
+from typing import Dict
 
 
 if __name__ == "__main__":
-    creature_card = CreatureCard("Fire Dragon", 5, "Legendary", 7, 5)
-    gane_state = {
+    creature_card: CreatureCard = CreatureCard("Fire Dragon", 5, "Legendary", 7, 5)
+    gane_state: Dict = {
         "effect_creature": "Creature summoned to battlefield"
     }
     print("\n=== DataDeck Card Foundation ===\n")

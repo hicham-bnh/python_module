@@ -12,8 +12,8 @@ class ArtifactCard(Card):
             effect: str
     ) -> None:
         super().__init__(name, cost, rarity)
-        self.durability = durability
-        self.effect = effect
+        self.durability: int = durability
+        self.effect: str = effect
 
     def play(self, game_state: Dict) -> Dict:
         self.activate_ability()
