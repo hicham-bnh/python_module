@@ -1,15 +1,21 @@
 from .CardFactory import CardFactory
+from ex0.CreatureCard import CreatureCard
+from ex1.SpellCard import SpellCard
+from ex1.ArtifactCard import ArtifactCard
 
 
 class FantasyCardFactory(CardFactory):
     def create_creature(self, name_or_power=None):
-        return {"name": "Fire Dragon", "cost": 5, "damage": 5}
+        card = CreatureCard("Fire Dragon", 5, "commun", 5, 8)
+        return card
 
     def create_spell(self, name_or_power=None):
-        return {"name": "Lightning Bolt", "cost": 3, "damage": 3}
+        card = SpellCard("Lightning Bolt", 3, "commun", "damage")
+        return card
 
     def create_artifact(self, name_or_power=None):
-        return {"name": "Mana Ring", "cost": 1, "damage": 0}
+        card = ArtifactCard("Mana Ring", 1, "commun", 5, "damage")
+        return card
 
     def create_themed_deck(self, size: int) -> dict:
         deck = [
