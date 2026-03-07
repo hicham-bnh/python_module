@@ -2,14 +2,15 @@
 name = "42"
 version = "1.0"
 description = ""
+package-mode = false
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4.0"
-pandas = "*"
-requests = "*"
-matplotlib = "*"
-numpy = "*"
+python = "^3.10"
+pandas = "^2.1.0"
+numpy = "^1.26.0"
+matplotlib = "^3.7.2"
+requests = "^2.31.0"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

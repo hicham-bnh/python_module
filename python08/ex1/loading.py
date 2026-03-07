@@ -2,9 +2,10 @@ import importlib
 import sys
 
 
-if __name__ == "__main__":
+def check():
     print("\nLOADING STATUS: Loading programs...\n")
     print("Checking dependencies:")
+    # try to import some module
     try:
         pandas = importlib.import_module("pandas")
         print(f"[OK] pandas ({pandas.__version__})")
@@ -25,29 +26,23 @@ if __name__ == "__main__":
         print("or")
         print("poetry install")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    check()
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import pandas as pd
     print("Analyzing Matrix data...")
     try:
-        n = int(sys.argv[1])
-        print(f"Processing {n} data points...")
+        print("Processing 600 data points...")
         print("Generating visualization...\n")
-    except Exception:
-        print("No data points plaese put data...")
+        data = np.random.randn(600)
+        df = pd.DataFrame({"signal": data})
+        plt.figure()
+        plt.plot(df["signal"])
+        plt.tight_layout()
+        plt.savefig("matrix_analysis.png")
+    except Exception as e:
+        print(e)
         sys.exit(1)
-    import numpy as np
-    import pandas as pd
-    import matplotlib.pyplot as plt
-
-    print("Analyzing Matrix data...")
-    print("Processing 1000 data points...")
-    print("Generating visualization...")
-
-    data = np.random.randn(1000)
-    df = pd.DataFrame({"signal": data})
-
-    plt.figure()
-    plt.plot(df["signal"])
-    plt.tight_layout()
-    plt.savefig("matrix_analysis.png")
-
-    print("Analysis complete!")
-    print("Results saved to: matrix_analysis.png")

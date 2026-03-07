@@ -5,6 +5,7 @@ import os
 
 if __name__ == "__main__":
     if (sys.prefix == sys.base_prefix):
+        # check if the prefix is not the same with the base
         print("MATRIX STATUS: You're still plugged in")
         print(f"Current Python: {sys.executable}")
         print("Virtual Environment: None detected\n")
